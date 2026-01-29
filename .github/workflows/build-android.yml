@@ -5,20 +5,42 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+env:
+  FLIPPER_VERSION: 0.182.0
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Build Android APK
-      uses: react-native-android-build-apk@v0.3.0-beta
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        buildType: release
-        nodeVersion: 20
-        projectDir: android
+        node-version: '20'
+
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x android/gradlew
+
+    - name: Build APK
+      run: |
+        cd android
+        ./gradlew assembleRelease --stacktrace
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
@@ -26,3 +48,4 @@ jobs:
         name: app-release
         path: android/app/build/outputs/apk/release/*.apk
         retention-days: 30
+        if-no-files-found: error
