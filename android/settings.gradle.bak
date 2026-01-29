@@ -1,0 +1,2 @@
+pluginManagement { repositories { gradlePluginPortal(); google(); mavenCentral(); } }
+plugins { id "com.facebook.react.settings" }

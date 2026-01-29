@@ -1,3 +1,19 @@
-pluginManagement { repositories { gradlePluginPortal(); google(); mavenCentral(); } }
-plugins { id "com.facebook.react.settings" }
-settings.gradle.ext.react = [ enableHermes: true ] // From ./node_modules/react-native
+plugins {
+    id "com.android.application" version "8.1.0"
+}
+
+android {
+    ndkVersion "25.1.8937393"
+    compileSdk 34
+    buildToolsVersion "34.0.0"
+
+    namespace "com.tvlive.app"
+
+    defaultConfig {
+        applicationId "com.tvlive.app"
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+    }
+}
