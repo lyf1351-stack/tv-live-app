@@ -13,25 +13,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
+    - name: Build Android APK
+      uses: react-native-android-build-apk@v0.3.0-beta
       with:
-        node-version: '20'
-
-    - name: Setup Java
-      uses: actions/setup-java@v4
-      with:
-        distribution: 'temurin'
-        java-version: '17'
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build APK
-      run: |
-        cd android
-        chmod +x gradlew
-        ./gradlew assembleRelease
+        buildType: release
+        nodeVersion: 20
+        projectDir: android
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
