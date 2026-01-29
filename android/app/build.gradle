@@ -1,18 +1,18 @@
-rootProject.name = 'tv-live-app'
+rootProject.name = "tv-live-app"
 
 apply plugin: "com.android.application"
 
 android {
-    ndkVersion "25.1.8937393"
-    compileSdkVersion 33
-    buildToolsVersion "33.0.0"
+    ndkVersion rootProject.ext.ndkVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     namespace "com.tvlive.app"
 
     defaultConfig {
         applicationId "com.tvlive.app"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -31,7 +31,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.debug
+            minifyEnabled enableProguardInReleaseBuilds
         }
     }
 }
