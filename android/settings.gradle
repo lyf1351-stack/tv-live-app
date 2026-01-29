@@ -1,0 +1,3 @@
+pluginManagement { repositories { gradlePluginPortal(); google(); mavenCentral(); } }
+plugins { id "com.facebook.react.settings" }
+settings.gradle.ext.react = [ enableHermes: true ] // From ./node_modules/react-native
