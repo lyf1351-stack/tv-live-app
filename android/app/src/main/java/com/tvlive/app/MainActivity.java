@@ -1,21 +1,16 @@
 package com.tvlive.app;
 
+import android.os.Bundle;
+import android.view.KeyEvent;
 import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactActivityDelegate;
-import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
-import com.facebook.react.defaults.DefaultReactActivityDelegate;
 
+/**
+ * Main Activity for VideoViewer app
+ */
 public class MainActivity extends ReactActivity {
+
     @Override
     protected String getMainComponentName() {
         return "tv-live-app";
-    }
-
-    @Override
-    protected ReactActivityDelegate createReactActivityDelegate() {
-        return new DefaultReactActivityDelegate(
-            this,
-            getMainComponentName(),
-            DefaultNewArchitectureEntryPoint.getEnabled());
     }
 }
